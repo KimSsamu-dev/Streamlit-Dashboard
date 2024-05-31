@@ -9,7 +9,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 ### Control Variables ###
-file_path_all = f"C:/Users/David/Downloads/amin/Testing/"
+file_path_all = f"C:/Users/David/Downloads/Dashboard/"
 beam_width = 12
 outtage = 230
 
@@ -17,7 +17,7 @@ outtage = 230
 cwd = os.getcwd()
 
 # Specify the relative path to your file from the cwd
-file_path = os.path.join(cwd, "C:/Users/David/Downloads/amin")
+file_path = os.path.join(cwd, "C:/Users/David/Downloads/Dashboard")
 
 st.set_page_config(page_title="Dashboard", page_icon=":bar_chart:", layout="wide")
 
@@ -30,7 +30,6 @@ tracks = list(range(1, 9))
 
 # Create the selectbox for selecting a train track
 track = st.sidebar.selectbox("Pilih Lintasan", options=tracks, index=0)
-selected_track = f"C:/Users/David/Downloads/amin/Testing/Track"
 
 ml_method = st.sidebar.radio(
     "Select the Beam Index Prediction Method",
@@ -48,8 +47,7 @@ st.write("---")
 st.markdown(f"<h2 style='text-align: center; color: black;'>High Speed Train Track {track}</h2>", unsafe_allow_html=True)
 
 # Determine the folder path for the selected track
-selected_track_folder = f"C:/Users/David/Downloads/amin/Testing/Track{track}"
-selected_track = f"C:/Users/David/Downloads/amin/Testing/Track{track}/down_lokasi_kereta_{track}.xlsx"
+selected_track = f"{file_path_all}/down_lokasi_kereta_{track}.xlsx"
 df_track = pd.read_excel(selected_track)
 
 # Column
@@ -61,11 +59,11 @@ with st.container():
         st.header("Beam Index")
         selected_index = track
         # Read train coordinates and time data from Excel file
-        file_path_train = f"C:/Users/David/Downloads/amin/Testing/Track{track}/down_lokasi_kereta_{track}.xlsx"
+        file_path_train = f"{file_path_all}/down_lokasi_kereta_{track}.xlsx"
         df_train = pd.read_excel(file_path_train)
 
         # Read Index
-        file_azimuth = f"C:/Users/David/Downloads/amin/Testing/Track{track}/sum_{track}.xlsx"
+        file_azimuth = f"{file_path_all}/sum_{track}.xlsx"
         df_azimuth = pd.read_excel(file_azimuth)
 
         # Define base station coordinates
@@ -153,7 +151,7 @@ with st.container():
         st.subheader("")
 
         # Read data from Excel file
-        file_datarate = f"C:/Users/David/Downloads/amin/Testing/Track{track}/sum_{track}.xlsx"
+        file_datarate = f"{file_path_all}/sum_{track}.xlsx"
         datas = pd.read_excel(file_datarate)
 
         # Plot
@@ -186,7 +184,7 @@ with st.container():
             st.markdown(f"**Outtage Percentage:**<h2>{outtage}%</h2>", unsafe_allow_html=True)
 
     # Read the Excel file once
-    file_acc = f"C:/Users/David/Downloads/amin/Testing/Track{track}/Acc_Track{track}.xlsx"
+    file_acc = f"{file_path_all}/Acc_Track{track}.xlsx"
     df_method = pd.read_excel(file_acc)
 
     if method:
@@ -210,3 +208,4 @@ with st.container():
                     st.write(f"Method {method_name} not found in the data.")
     else:
         st.write("No methods selected")
+
