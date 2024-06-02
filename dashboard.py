@@ -95,11 +95,12 @@ with st.container():
         fig.update_layout(
             xaxis_title='X',
             yaxis_title='Y',
-            xaxis=dict(range=[-400, 400]),  # Set fixed range for x-axis
-            yaxis=dict(range=[-400, 400]),  # Set fixed range for y-axis
+            xaxis=dict(range=[-400, 400], title_font=dict(size=16)),
+            yaxis=dict(range=[-400, 400], title_font=dict(size=16)),
             showlegend=True,
             width=800,
             height=500,
+            font=dict(size=14),
             updatemenus=[{
                 "buttons": [{
                     "args": [None, {"frame": {"duration": 300, "redraw": True}, "fromcurrent": True, "mode": "immediate"}],
@@ -167,8 +168,11 @@ with st.container():
             line=dict(color='red', width=5)
         )
 
-        chart = st.plotly_chart(fig_rate, use_container_width=True)
-
+        # Update y-axis label
+        fig_rate.update_yaxes(title_text='Datarate', title_font={"size": 18})
+        fig_rate.update_xaxes(title_text='Point', title_font={"size": 18})
+        # Display the plot in Streamlit
+        st.plotly_chart(fig_rate)
 
     st.write("---")
     # Create a 3x2 grid layout
