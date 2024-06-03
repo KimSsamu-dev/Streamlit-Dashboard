@@ -59,11 +59,11 @@ with st.container():
         st.header("Beam Index")
         selected_index = track
         # Read train coordinates and time data from Excel file
-        file_path_train = f"{file_path_all}/down_lokasi_kereta_{track}.xlsx"
+        file_path_train = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/down_lokasi_kereta_{track}.xlsx'
         df_train = pd.read_excel(file_path_train)
 
         # Read Index
-        file_azimuth = f"{file_path_all}/sum_{track}.xlsx"
+        file_azimuth = https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx
         df_azimuth = pd.read_excel(file_azimuth)
 
         # Define base station coordinates
