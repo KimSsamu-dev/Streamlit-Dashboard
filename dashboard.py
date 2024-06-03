@@ -53,11 +53,11 @@ with st.container():
         selected_index = track
         # Read train coordinates and time data from Excel file
         file_path_train = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/down_lokasi_kereta_{track}.xlsx'
-        df_train = pd.read_excel(file_path_train)
+        df_train = pd.read_excel(file_path_train, engine='openpyxl')
 
         # Read Index
         file_azimuth = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx'
-        df_azimuth = pd.read_excel(file_azimuth)
+        df_azimuth = pd.read_excel(file_azimuth, engine='openpyxl')
 
         # Define base station coordinates
         base_station_x = 0
@@ -146,7 +146,7 @@ with st.container():
 
         # Read data from Excel file
         file_datarate = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx'
-        datas = pd.read_excel(file_datarate)
+        datas = pd.read_excel(file_datarate, engine='openpyxl')
 
         # Plot
         fig_rate = px.bar(datas, x='point', y=f'convert_{ml_method}', barmode='group', color_discrete_sequence=['green']*len(datas))
@@ -182,7 +182,7 @@ with st.container():
 
     # Read the Excel file once
     file_acc = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/Acc_Track1.xlsx'
-    df_method = pd.read_excel(file_acc)
+    df_method = pd.read_excel(file_acc, engine='openpyxl')
 
     if method:
         cols = st.columns(3)
