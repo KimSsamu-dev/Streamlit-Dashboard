@@ -47,7 +47,7 @@ st.write("---")
 st.markdown(f"<h2 style='text-align: center; color: black;'>High Speed Train Track {track}</h2>", unsafe_allow_html=True)
 
 # Determine the folder path for the selected track
-selected_track = f"{file_path_all}/down_lokasi_kereta_{track}.xlsx"
+selected_track = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/down_lokasi_kereta_{track}.xlsx'
 df_track = pd.read_excel(selected_track)
 
 # Column
