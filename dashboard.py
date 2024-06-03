@@ -57,7 +57,7 @@ with st.container():
         df_train = pd.read_excel(file_path_train)
 
         # Read Index
-        file_azimuth = https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx
+        file_azimuth = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx'
         df_azimuth = pd.read_excel(file_azimuth)
 
         # Define base station coordinates
@@ -146,7 +146,7 @@ with st.container():
         st.subheader("")
 
         # Read data from Excel file
-        file_datarate = f"{file_path_all}/sum_{track}.xlsx"
+        file_datarate = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx'
         datas = pd.read_excel(file_datarate)
 
         # Plot
@@ -182,7 +182,7 @@ with st.container():
             st.markdown(f"**Outtage Percentage:**<h2>{outtage}%</h2>", unsafe_allow_html=True)
 
     # Read the Excel file once
-    file_acc = f"{file_path_all}/Acc_Track{track}.xlsx"
+    file_acc = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/Acc_Track1.xlsx'
     df_method = pd.read_excel(file_acc)
 
     if method:
