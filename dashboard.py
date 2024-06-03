@@ -9,7 +9,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 ### Control Variables ###
-file_path_all = f"C:/Users/David/Downloads/Dashboard/"
 beam_width = 12
 outtage = 230
 
