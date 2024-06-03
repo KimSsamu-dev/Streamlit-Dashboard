@@ -13,12 +13,6 @@ file_path_all = f"C:/Users/David/Downloads/Dashboard/"
 beam_width = 12
 outtage = 230
 
-# Get the current working directory
-cwd = os.getcwd()
-
-# Specify the relative path to your file from the cwd
-file_path = os.path.join(cwd, "C:/Users/David/Downloads/Dashboard")
-
 st.set_page_config(page_title="Dashboard", page_icon=":bar_chart:", layout="wide")
 
 # Title
