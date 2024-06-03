@@ -41,7 +41,7 @@ st.markdown(f"<h2 style='text-align: center; color: black;'>High Speed Train Tra
 
 # Determine the folder path for the selected track
 selected_track = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/down_lokasi_kereta_{track}.xlsx'
-df_track = pd.read_excel(selected_track)
+df_track = pd.read_excel(selected_track, engine='openpyxl')
 
 # Column
 with st.container():
