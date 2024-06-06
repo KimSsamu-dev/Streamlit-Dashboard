@@ -9,14 +9,36 @@ import warnings
 warnings.filterwarnings('ignore')
 
 ### Control Variables ###
+file_path_all = f"C:/Users/David/Downloads/Dashboard/"
 beam_width = 12
 outtage = 230
+
+# Get the current working directory
+cwd = os.getcwd()
+
+# Specify the relative path to your file from the cwd
+file_path = os.path.join(cwd, "C:/Users/David/Downloads/Dashboard")
 
 st.set_page_config(page_title="Dashboard", page_icon=":bar_chart:", layout="wide")
 
 # Title
 with st.container():
     st.title("5G Beam Prediction with Machine Learning on High Speed Train with Machine Learning Dashboard")
+
+# Custom CSS for making the font size larger in the selectbox
+st.markdown("""
+    <style>
+    /* Target the label of the selectbox */
+    .stSelectbox > label {
+        font-size: 30px;
+    }
+    /* Target the options in the selectbox dropdown */
+    .stSelectbox div[data-baseweb="select"] {
+        font-size: 30px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 
 # Define the choices for the train tracks
 tracks = list(range(1, 9))
@@ -40,8 +62,8 @@ st.write("---")
 st.markdown(f"<h2 style='text-align: center; color: black;'>High Speed Train Track {track}</h2>", unsafe_allow_html=True)
 
 # Determine the folder path for the selected track
-selected_track = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/down_lokasi_kereta_{track}.xlsx'
-df_track = pd.read_excel(selected_track, engine='openpyxl')
+selected_track = f"{file_path_all}/down_lokasi_kereta_{track}.xlsx"
+df_track = pd.read_excel(selected_track)
 
 # Column
 with st.container():
@@ -52,12 +74,12 @@ with st.container():
         st.header("Beam Index")
         selected_index = track
         # Read train coordinates and time data from Excel file
-        file_path_train = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/down_lokasi_kereta_{track}.xlsx'
-        df_train = pd.read_excel(file_path_train, engine='openpyxl')
+        file_path_train = f"{file_path_all}/down_lokasi_kereta_{track}.xlsx"
+        df_train = pd.read_excel(file_path_train)
 
         # Read Index
-        file_azimuth = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx'
-        df_azimuth = pd.read_excel(file_azimuth, engine='openpyxl')
+        file_azimuth = f"{file_path_all}/sum_{track}.xlsx"
+        df_azimuth = pd.read_excel(file_azimuth)
 
         # Define base station coordinates
         base_station_x = 0
@@ -145,8 +167,8 @@ with st.container():
         st.subheader("")
 
         # Read data from Excel file
-        file_datarate = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/sum_{track}.xlsx'
-        datas = pd.read_excel(file_datarate, engine='openpyxl')
+        file_datarate = f"{file_path_all}/sum_{track}.xlsx"
+        datas = pd.read_excel(file_datarate)
 
         # Plot
         fig_rate = px.bar(datas, x='point', y=f'convert_{ml_method}', barmode='group', color_discrete_sequence=['green']*len(datas))
@@ -166,6 +188,7 @@ with st.container():
         fig_rate.update_xaxes(title_text='Point', title_font={"size": 18})
         # Display the plot in Streamlit
         st.plotly_chart(fig_rate)
+        st.write(f"Outtage limit is set at {outtage} Mbps")
 
     st.write("---")
     # Create a 3x2 grid layout
@@ -181,8 +204,8 @@ with st.container():
             st.markdown(f"**Outtage Percentage:**<h2>{outtage}%</h2>", unsafe_allow_html=True)
 
     # Read the Excel file once
-    file_acc = f'https://github.com/KimSsamu-dev/Streamlit-Dashboard/blob/main/Acc_Track1.xlsx'
-    df_method = pd.read_excel(file_acc, engine='openpyxl')
+    file_acc = f"{file_path_all}/Acc_Track{track}.xlsx"
+    df_method = pd.read_excel(file_acc)
 
     if method:
         cols = st.columns(3)
